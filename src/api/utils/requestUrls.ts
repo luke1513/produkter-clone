@@ -1,0 +1,2 @@
+export const postProductSearchUrl = `https://pfp-public-productdb-api.azurewebsites.net/api/product/search`
+export const getProductImageUrl = (id: number) => `https://pfp-public-productdb-api.azurewebsites.net/api/picture/${id}`

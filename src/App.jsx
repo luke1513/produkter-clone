@@ -1,13 +1,11 @@
-import './App.css';
+import './index.css'
 
-function App() {
-  return (
-    <div className="App">
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-    </div>
-  );
+import ProductOverview from './components/ProductOverview'
+
+const App = () => {
+    return (
+        <ProductOverview />
+    )
 }
 
-export default App;
+export default App
