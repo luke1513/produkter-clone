@@ -4,4 +4,5 @@ export type PostProductSearchResponse = {
     'pageCount': number,
     'pageSize': number,
     'rowCount': number
+    onSetProducts: () => PostProductSearchResponse | undefined
 }

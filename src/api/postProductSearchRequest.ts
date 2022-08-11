@@ -1,5 +1,5 @@
-import axios from "axios"
-import { PostProductSearchBody, PostProductSearchResponse, postProductSearchUrl } from "./utils"
+import axios from 'axios'
+import { PostProductSearchBody, PostProductSearchResponse, postProductSearchUrl } from './utils'
 
 const postProductSearchRequest = async({page, pageSize, searchText, productCategoryTypeIds, complianceTypeIds, sourceTypeIds}: PostProductSearchBody): Promise<PostProductSearchResponse | undefined> => {
     try {

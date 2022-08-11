@@ -1,3 +1,3 @@
-import ProductImage from "./ProductImage";
+import ProductImage from './ProductImage';
 
 export default ProductImage

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './ProductImage.css'
 
-type ProductImageProps = {
+type ProductImagePropTypes = {
     imgSrc: Promise<string | undefined>
 }
  
-const ProductImage = ({imgSrc}: ProductImageProps) => {
+const ProductImage = ({imgSrc}: ProductImagePropTypes) => {
 
     const [loadedSrc, setLoadedSrc] = useState<string | undefined>(undefined)
 
@@ -14,7 +14,7 @@ const ProductImage = ({imgSrc}: ProductImageProps) => {
     }, [imgSrc])
 
     return (
-        <img src={loadedSrc} loading="lazy" alt="" />
+        <img src={loadedSrc} loading='lazy' alt='' />
     )
 }
 

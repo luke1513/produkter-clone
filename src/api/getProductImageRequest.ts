@@ -1,10 +1,10 @@
-import axios from "axios"
-import { getProductImageUrl } from "./utils"
+import axios from 'axios'
+import { getProductImageUrl } from './utils'
 
 const getProductImageRequest = async(imageId: number): Promise<string | undefined> => {
     try {
         const url = getProductImageUrl(imageId)
-        const data = await axios.get(url, { responseType: "blob" })
+        const data = await axios.get(url, { responseType: 'blob' })
 
         return URL.createObjectURL(data.data);
     }

@@ -1,35 +1,26 @@
-import React, { useEffect, useState } from 'react'
 import './ProductOverview.css'
-import { postProductSearchRequest, getProductImageRequest } from '../../api'
+import { getProductImageRequest } from '../../api'
 import { PostProductSearchResponse } from '../../api/utils'
 import ProductImage from '../ProductImage'
+//import loadingImg from '../../../public/graphics/loading.gif' doesn't work for now
+
+type ProductOverviewPropTypes = {
+    products: PostProductSearchResponse | undefined,
+}
  
-const ProductOverview = () => {
+const ProductOverview = ({products}: ProductOverviewPropTypes) => {
 
-    const [products, setProducts] = useState<PostProductSearchResponse | undefined>(undefined)
-
-    const postProductSearchRequestHandler = () => {
-        postProductSearchRequest({page: 1, pageSize: 99, searchText: "", productCategoryTypeIds: [], complianceTypeIds: [], sourceTypeIds: []})
-        .then(res => {
-            setProducts(res)
-        })
-    }
-
-    const getProductImageRequestHandler = (productId: number) => {
+    const handleSetProductImage = (productId: number) => {
         return getProductImageRequest(productId)
     }
-
-    useEffect(() => {
-        postProductSearchRequestHandler()
-    }, [])
 
     return (
         products
         ? 
-            <div className="product-container">
+            <div className='product-container'>
                 {products.results.map(product => 
-                    <div className="product" key={product.id}>
-                        <ProductImage imgSrc={getProductImageRequestHandler(product.id)}/>
+                    <div className='product' key={product.id}>
+                        <ProductImage imgSrc={handleSetProductImage(product.id)}/>
                         <p>{product.name}</p>
                     </div>
                     
@@ -37,6 +28,7 @@ const ProductOverview = () => {
             </div>
         : 
             <div>
+                {/* <img src='' className='loading' alt='' /> */}
                 Loading...
             </div>
     )
