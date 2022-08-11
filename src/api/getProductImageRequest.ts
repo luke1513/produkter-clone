@@ -4,9 +4,9 @@ import { getProductImageUrl } from "./utils"
 const getProductImageRequest = async(imageId: number): Promise<string | undefined> => {
     try {
         const url = getProductImageUrl(imageId)
-        const data = await axios.get(url)
+        const data = await axios.get(url, { responseType: "blob" })
 
-        return data.data
+        return URL.createObjectURL(data.data);
     }
     catch(e) {
         console.log(e)

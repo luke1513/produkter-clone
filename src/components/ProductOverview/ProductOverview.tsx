@@ -2,28 +2,21 @@ import React, { useEffect, useState } from 'react'
 import './ProductOverview.css'
 import { postProductSearchRequest, getProductImageRequest } from '../../api'
 import { PostProductSearchResponse } from '../../api/utils'
+import ProductImage from '../ProductImage'
  
 const ProductOverview = () => {
 
     const [products, setProducts] = useState<PostProductSearchResponse | undefined>(undefined)
 
     const postProductSearchRequestHandler = () => {
-        let data: PostProductSearchResponse | undefined
         postProductSearchRequest({page: 1, pageSize: 99, searchText: "", productCategoryTypeIds: [], complianceTypeIds: [], sourceTypeIds: []})
         .then(res => {
-            data = res
-            setProducts(data)
+            setProducts(res)
         })
     }
 
     const getProductImageRequestHandler = (productId: number) => {
-        let data: string | undefined
-        getProductImageRequest(productId)
-        .then(res => {
-            data = res
-        })
-        
-        return data
+        return getProductImageRequest(productId)
     }
 
     useEffect(() => {
@@ -36,9 +29,10 @@ const ProductOverview = () => {
             <div className="product-container">
                 {products.results.map(product => 
                     <div className="product" key={product.id}>
-                        <img src={getProductImageRequestHandler(product.id)} loading="lazy" />
+                        <ProductImage imgSrc={getProductImageRequestHandler(product.id)}/>
                         <p>{product.name}</p>
                     </div>
+                    
                 )}
             </div>
         : 
