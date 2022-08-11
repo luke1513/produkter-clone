@@ -1,4 +1,4 @@
-import './index.css'
+import './App.css'
 
 import ProductOverview from './components/ProductOverview'
 import { PostProductSearchResponse } from './api/utils';
@@ -18,7 +18,7 @@ const App = () => {
     }, [])
 
     return (
-        <div>
+        <div className="app">
             <ProductFilter onSetProducts={handleSetProducts} />
             <ProductOverview products={products} />
         </div>

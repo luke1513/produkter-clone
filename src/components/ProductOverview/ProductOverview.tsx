@@ -1,5 +1,4 @@
 import './ProductOverview.css'
-import { getProductImageRequest } from '../../api'
 import { PostProductSearchResponse } from '../../api/utils'
 import ProductImage from '../ProductImage'
 //import loadingImg from '../../../public/graphics/loading.gif' doesn't work for now
@@ -10,22 +9,25 @@ type ProductOverviewPropTypes = {
  
 const ProductOverview = ({products}: ProductOverviewPropTypes) => {
 
-    const handleSetProductImage = (productId: number) => {
-        return getProductImageRequest(productId)
-    }
-
     return (
         products
-        ? 
-            <div className='product-container'>
-                {products.results.map(product => 
-                    <div className='product' key={product.id}>
-                        <ProductImage imgSrc={handleSetProductImage(product.id)}/>
-                        <p>{product.name}</p>
-                    </div>
-                    
-                )}
-            </div>
+        ?
+            products.results.length
+            ?
+                <div className='product-container'>
+                    {products.results.map(product => 
+                        <div className='product' key={product.id}>
+                            <ProductImage productId={product.id} />
+                            <p>{product.name}</p>
+                        </div>
+                        
+                    )}
+                </div>
+            :
+                <div>
+                    No products found
+                </div>
+
         : 
             <div>
                 {/* <img src='' className='loading' alt='' /> */}

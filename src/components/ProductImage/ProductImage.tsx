@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { getProductImageRequest } from '../../api'
 import './ProductImage.css'
-
-type ProductImagePropTypes = {
-    imgSrc: Promise<string | undefined>
-}
  
-const ProductImage = ({imgSrc}: ProductImagePropTypes) => {
+type ProductImagePropTypes = {
+    productId: number
+}
+
+const ProductImage = ({productId}: ProductImagePropTypes) => {
 
     const [loadedSrc, setLoadedSrc] = useState<string | undefined>(undefined)
 
+    const handleSetProductImage = (value: Promise<string | undefined>) => {
+        value.then(res => setLoadedSrc(res))
+    }
+
     useEffect(() => {
-        imgSrc.then(res => setLoadedSrc(res))
-    }, [imgSrc])
+        handleSetProductImage(getProductImageRequest(productId))
+    }, [productId])
 
     return (
         <img src={loadedSrc} loading='lazy' alt='' />
